@@ -39,3 +39,30 @@ func TimeStringSub(s string, t int) string {
 	sec := tm.Unix() - int64(t)
 	return UnixToString(sec)
 }
+
+func TimeOnly(t *time.Time) string {
+	s := t.Format(timeForamtStr)
+	return s[11:]
+}
+
+func DateOnly(t *time.Time) string {
+	s := t.Format(timeForamtStr)
+	return s[:10]
+}
+
+func DayNext(s string) string {
+	nextDay := TimeOfString(s+" 00:00:00").AddDate(0, 0, 1)
+	return DateOnly(&nextDay)
+}
+
+func TimeString(t *time.Time) string {
+	if t == nil {
+		return time.Now().Format(timeForamtStr)
+	}
+	return t.Format(timeForamtStr)
+}
+
+func Timeout(tm *time.Time, sec float64) bool {
+	return time.Since(*tm).Seconds() > sec
+}
+

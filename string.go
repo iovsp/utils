@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 	"unsafe"
@@ -35,6 +36,10 @@ func StringSplitInts(s, sep string) (v []int) {
 		v = append(v, i)
 	}
 	return
+}
+
+func ToString(v interface{}) string {
+	return fmt.Sprintf("%v", v)
 }
 
 func Contains(array []int, val int) bool {
